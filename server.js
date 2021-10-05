@@ -75,14 +75,14 @@ app.get('/profile/:id', (req, res) => {
     }
 })
 
-app.post('/image', (req, res) => {
+app.put('/image', (req, res) => {
     const { id } = req.body;
     let found = false;
     database.users.forEach((user) => {
       if (user.id === id) {
-          found = true;
-          user.entries++
-        return res.json(user.entries);
+            found = true;
+            user.entries++
+            return res.json(user.entries);
       }
     });
     if (!found) {
@@ -94,13 +94,7 @@ bcrypt.hash('bacon', null, null, function (err, hash) {
   // Store hash in your password DB.
 });
 
-// // Load hash from your password DB.
-// bcrypt.compare('bacon', hash, function (err, res) {
-//   // res == true
-// });
-// bcrypt.compare('veggies', hash, function (err, res) {
-//   // res = false
-// });
+
 
 
 app.listen(3000, () => {
